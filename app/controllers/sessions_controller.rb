@@ -1,6 +1,14 @@
 class SessionsController < ApplicationController
   def index
-    
+     user = User.find(session[:user_id])
+     admin = user.is_admin
+    if admin == true
+      @message = "Welcome Admin"
+    else
+      @message = "Welcome User"
+    end
+
+
   end
 
   def new
