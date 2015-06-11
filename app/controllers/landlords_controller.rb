@@ -1,0 +1,3 @@
+class LandlordsController < ApplicationController
+	
+end
