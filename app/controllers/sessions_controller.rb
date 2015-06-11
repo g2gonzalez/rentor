@@ -1,14 +1,12 @@
 class SessionsController < ApplicationController
   def index
-     user = User.find(session[:user_id])
-     admin = user.is_admin
+    user = User.find(session[:user_id])
+    admin = user.is_admin
     if admin == true
       @message = "Welcome Admin"
     else
       @message = "Welcome User"
     end
-
-
   end
 
   def new
@@ -22,7 +20,17 @@ class SessionsController < ApplicationController
         # Save the user id inside the browser cookie. This is how we keep the user
         # logged in when they navigate around our website.
         session[:user_id] = user.id
-        redirect_to '/home'
+        
+        user = User.find(session[:user_id])
+        admin = user.is_admin
+        puts "session: #{admin}"
+
+        if admin == true
+          redirect_to '/landlord'
+        else
+          redirect_to '/renter'
+        end
+
       else
       # If user's login doesn't work, send them back to the login form.
         redirect_to '/login'
