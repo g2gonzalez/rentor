@@ -44,5 +44,4 @@ group :development, :test do
 end
 
 gem 'hirb'
-gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass', '~> 3.3.4'

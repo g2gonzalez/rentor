@@ -1,11 +1,14 @@
 class HomeController < ApplicationController
-	def index
-    if session[:is_admin] == true
-      @message = "Welcome Admin"
-    else
-      @message = "Welcome User"
-    end
-	end
+
+ 	def index
+ 		# check to see if it's an admin or not and display appropriate message
+        if session[:is_admin] == true
+       		@message = "Welcome Admin"
+    		else
+      		@message = "Welcome User"
+    		end
+  	end
+
 end
 
 =begin
