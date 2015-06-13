@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-
 	def index
   	end
 
@@ -8,23 +7,22 @@ class SessionsController < ApplicationController
 
   	def create
     		user = User.find_by_email(params[:email])
-	    # If the user exists AND the password entered is correct.
-	    if user && user.authenticate(params[:password])
+	    	# If the user exists AND the password entered is correct.
+	    	if user && user.authenticate(params[:password])
 	    		# Save the user id and is admin inside the browser cookie. This is how we keep
-	      	# the user logged in when they navigate around our website.
-	      	session[:user_id] = user.id
-	      	session[:is_admin] = user.is_admin
+      		# the user logged in when they navigate around our website.
+      		session[:user_id] = user.id
+      		session[:is_admin] = user.is_admin
 
-	      	redirect_to '/home'
-	    else
+      		redirect_to '/home'
+	    	else
 	    		# If user's login doesn't work, send them back to the login form.
 	      	redirect_to '/login'
-	    end
+	    	end
 	end
 
 	def destroy
 		session[:user_id] = nil
 	    	redirect_to '/'
 	end
-
 end
