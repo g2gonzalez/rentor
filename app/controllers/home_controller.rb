@@ -4,6 +4,7 @@ class HomeController < ApplicationController
  		# check to see if it's an admin or not and display appropriate message
      		if session[:is_admin] == true
        		@message = "Welcome Admin"
+           @locations = Location.all
     		else
       		@message = "Welcome User"
     		end
@@ -19,6 +20,3 @@ bills:
 apt_name | amount | due date
 
 =end
-
-
-
