@@ -4,9 +4,10 @@ class HomeController < ApplicationController
  		# check to see if it's an admin or not and display appropriate message
      		if session[:is_admin] == true
        		@message = "Welcome Admin"
-           @locations = Location.all
+       		@locations = Location.all
+           		@location = Location.new
     		else
-      		@message = "Welcome User"
+      			@message = "Welcome User"
     		end
   	end
 end
