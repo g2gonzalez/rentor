@@ -21,6 +21,8 @@
 	<%= f.password_field :password %><br><br>
 	Password Confirmation: <br>
 	<%= f.password_field :password_confirmation %><br><br>
+	Please tell us where you live:<br>
+	<%= f.collection_select :location_id, Location.all, :id, :apt_name %><br>
 	<%= f.submit "Submit" %>
 
 <% end %>

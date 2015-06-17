@@ -7,7 +7,7 @@ class UsersController < ApplicationController
 		@user = User.new(user_params)
 
 		if @user.save
-			session[:user_id] = user.id
+			session[:user_id] = @user.id
 			redirect_to '/home'
 		else
 			render :new
@@ -19,6 +19,6 @@ class UsersController < ApplicationController
 			#add is_admin to hash without showing it in the view
 			modified_hash = params[:user]
 			modified_hash[:is_admin] = "false"
-			modified_hash.permit(:name, :email, :is_admin, :password, :password_confirmation)
+			modified_hash.permit(:name, :email, :is_admin, :password, :password_confirmation, :location_id)
 		end
 end

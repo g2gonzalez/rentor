@@ -13,6 +13,7 @@ class SessionsController < ApplicationController
       		# the user logged in when they navigate around our website.
       		session[:user_id] = user.id
       		session[:is_admin] = user.is_admin
+					session[:location_id] = user.location_id
 
       		redirect_to '/home'
 	    	else

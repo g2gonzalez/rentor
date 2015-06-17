@@ -1,29 +1,36 @@
 <h1><%= @message %></h1>
-<% @locations.each do |loc| %>
-<ul>
-  <li><%= loc.apt_name %></li>
-  <li><%= loc.address %></li>
-  <li><%= loc.city %></li>
-</ul>
-<% end %>
+<% if session[:is_admin] == true %>
+<h3>You own the following properties:</h3>
+<br>
+  <% @locations.each do |loc| %>
+  <ul>
+    <li><%= "#{loc.apt_name}, #{loc.city} | Tenant Name" %></li>
+  </ul>
+  <% end %>
 
-<%= form_for @location do |f| %>
+  <%= form_for @location do |f| %>
 
-<%= f.hidden_field :user_id, value: session[:user_id] %>
-<%= f.label :apt_name %>
-<%= f.text_field :apt_name%>
-<br><br>
-<%= f.label :address %>
-<%= f.text_field :address%>
-<br><br>
-<%= f.label :city %>
-<%= f.text_field :city%>
-<br><br>
-<%= f.label :state %>
-<%= f.text_field :state%>
-<br><br>
-<%= f.label :zip %>
-<%= f.number_field :zip %>
-<br><br>
-<%= f.submit 'submit' %>
-<% end %>
+  <%= f.hidden_field :user_id, value: session[:user_id] %>
+  <%= f.label :apt_name %>
+  <%= f.text_field :apt_name%>
+  <br><br>
+  <%= f.label :address %>
+  <%= f.text_field :address%>
+  <br><br>
+  <%= f.label :city %>
+  <%= f.text_field :city%>
+  <br><br>
+  <%= f.label :state %>
+  <%= f.text_field :state%>
+  <br><br>
+  <%= f.label :zip %>
+  <%= f.number_field :zip %>
+  <br><br>
+  <%= f.submit 'submit' %>
+  <% end %>
+<% else%>
+
+ <h1>Thank you for using Rentor.</h1>
+<h2>Your landlord's name is <%= @landlord.name.capitalize %></h2>
+
+<% end%>

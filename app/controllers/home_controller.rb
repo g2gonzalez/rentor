@@ -6,9 +6,15 @@ class HomeController < ApplicationController
        		@message = "Welcome Admin"
        		@locations = Location.all
            		@location = Location.new
+          # tenant_location = @locations.each do |loc|
+          #   loc_id_join = loc.id
+          #   @tenant_name = User.find(loc_id_join.location_id)
+          # end
     		else
       			@message = "Welcome User"
-    		end
+            user_location = Location.find(session[:location_id])
+            @landlord = User.find(user_location.user_id)
+        end
   	end
 end
 
