@@ -1,55 +1,57 @@
-<div class="jumbotron">
-	<div class="container">
-		<h1 class="text-center">Signup!</h1>
-	</div>
-</div>
-
+<br><br><br>
 <div class="row">
 	<div class="col-md-6 .col-sm-6 .col-xs-6 col-md-offset-3">
-		<%= form_for :user, url: '/users' do |f| %>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="text-center">Signup</h3>
+			</div>
+			<div class="panel-body">
+				<%= form_for :user, url: '/users' do |f| %>
 
-			<% if @user.errors.any? %>
-				<div class="alert alert-danger" role="alert">
-					<div id="error_explanation">
-						<h3><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h3>
-					  	<ul>
-					  		<% @user.errors.full_messages.each do |msg| %>
-					    			<li><%= msg %></li>
-					  		<% end %>
-					  	</ul>
+					<% if @user.errors.any? %>
+						<div class="alert alert-danger" role="alert">
+							<div id="error_explanation">
+								<h3><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h3>
+							  	<ul>
+							  		<% @user.errors.full_messages.each do |msg| %>
+							    			<li><%= msg %></li>
+							  		<% end %>
+							  	</ul>
+							</div>
+						</div>
+					<% end %>
+
+					<div class="input-group">
+						<span class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
+						<%= f.text_field :name, placeholder:"Name", class: "form-control" %>
 					</div>
-				</div>
-			<% end %>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
+						<%= f.text_field :email, placeholder:"Email", class: "form-control" %>
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span></span>
+						<%= f.password_field :password, placeholder:"Password", class: "form-control" %>
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span></span>
+						<%= f.password_field :password_confirmation, placeholder:"Password Confirmation", class: "form-control" %>
+					</div>
+					<br>
+					<div class="input-group">
+						<span class="input-group-addon"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></span>
+						<%= f.collection_select :location_id, Location.all, :id, :apt_name, { prompt: "Select your aparment" }, { class: "form-control"} %>
+					</div>
+					<br>
+					<div class="form-group">
+						<%= f.submit "Create Account", class: "btn btn-primary btn-block" %>
+					</div>
 
-			<div class="input-group">
-				<span class="input-group-addon"><span class="glyphicon glyphicon-user" aria-hidden="true"></span></span>
-				<%= f.text_field :name, placeholder:"Name", class: "form-control" %>
+				<% end %>
 			</div>
-			<br>
-			<div class="input-group">
-				<span class="input-group-addon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></span>
-				<%= f.text_field :email, placeholder:"Email", class: "form-control" %>
-			</div>
-			<br>
-			<div class="input-group">
-				<span class="input-group-addon"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span></span>
-				<%= f.password_field :password, placeholder:"Password", class: "form-control" %>
-			</div>
-			<br>
-			<div class="input-group">
-				<span class="input-group-addon"><span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span></span>
-				<%= f.password_field :password_confirmation, placeholder:"Password Confirmation", class: "form-control" %>
-			</div>
-			<br>
-			<div class="input-group">
-				<span class="input-group-addon"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></span>
-				<%= f.collection_select :location_id, Location.all, :id, :apt_name, { prompt: "Select your aparment" }, { class: "form-control"} %>
-			</div>
-			<br>
-			<div class="form-group">
-				<%= f.submit "Create Account", class: "btn btn-primary" %>
-			</div>
-
-		<% end %>
+		</div>
 	</div>
 </div>

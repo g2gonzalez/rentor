@@ -8,8 +8,8 @@ class UsersController < ApplicationController
 
 		if @user.save
 			session[:user_id] = @user.id
-			session[:is_admin] = user.is_admin
-			session[:location_id] = user.location_id
+			session[:is_admin] = @user.is_admin
+			session[:location_id] = @user.location_id
 
 			redirect_to '/home'
 		else
