@@ -1,0 +1,28 @@
+<table class="table table-striped table-responsive">
+	<tr>
+		<th>Location</th>
+		<th>City</th>
+		<th>Tenants</th>
+		<th></th>
+		<th></th>
+		<th></th>
+	</tr>
+
+	<% @user.locations.each do |loc| %>
+		<% @users.each do |t| %>
+			<% if t.location_id == nil or t.location_id != loc.id %>
+				<% @tenant_name = "No tenant found" %>
+			<% elsif t.location_id == loc.id %>
+				<% @tenant_name = t.name.capitalize %>
+			<% end %>
+		<% end %>
+		<tr>
+			<td><%= "#{loc.apt_name}" %></td>
+			<td><%= "#{loc.city}" %></td>
+			<td><%= "#{@tenant_name}" %></td>
+			<td><%= link_to "Show", location_path(loc.id) %></td>
+			<td><%= link_to 'Edit', edit_location_path(loc.id) %></td>
+			<td><%= link_to 'Destroy', location_path(loc.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+		</tr>
+	<% end %>
+</table>
