@@ -15,15 +15,15 @@ class SessionsController < ApplicationController
       		session[:is_admin] = user.is_admin
 			session[:location_id] = user.location_id
 
-      		redirect_to '/home'
+      		redirect_to '/home', notice: "You've successfully logged in."
 	    	else
 	    		# If user's login doesn't work, send them back to the login form.
-	      	redirect_to '/login'
+	      	redirect_to '/login', notice: "That information was correct. Try logging in again."
 	    	end
 	end
 
 	def destroy
 		session[:user_id] = nil
-	    	redirect_to '/'
+	    	redirect_to '/', notice: "You've successfully logged out."
 	end
 end

@@ -11,7 +11,7 @@ class UsersController < ApplicationController
 			session[:is_admin] = @user.is_admin
 			session[:location_id] = @user.location_id
 
-			redirect_to '/home'
+			redirect_to '/home', notice: "Your account was successfully created."
 		else
 			render :new
 		end
